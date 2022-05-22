@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.model.Employee;
 import com.example.backend.service.EmployeeService;
-
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -32,15 +33,15 @@ public class EmployeeController {
 	    public Employee findEmployeeById(@PathVariable Long id){
 	        return employeeService.getEmployeeById(id);
 	    }
-	    // POST http://localhost:8080/employee/save
-	    @PostMapping("/save")
+	    // POST http://localhost:8080/employee/employees
+	    @PostMapping("/employees")
 	    public String saveEmployee(@RequestBody Employee employee) {
 	        // save employee to database
 	        employeeService.saveEmployee(employee);
 	        return "employee saved";
 	    }
-	    // POST http://localhost:8080/employee/employee/{id}
-	    @PutMapping("employee/{id}")
+	    // Put http://localhost:8080/employee/employees/{id}
+	    @PutMapping("employees/{id}")
 	    public String updateEmployee(@PathVariable( value = "id") long id,@RequestBody Employee employeeDetails) {
 	    	Employee employee = employeeService.getEmployeeById(id);
 	    	employee.setFirstname(employeeDetails.getFirstname());
@@ -49,7 +50,8 @@ public class EmployeeController {
 	    	employee.setFunction(employeeDetails.getFunction());
 	    	employee.setSalary(employeeDetails.getSalary());
 	    	employee.setGrade(employeeDetails.getGrade());
-	    	employee.setDateCreation(employeeDetails.getDateCreation());	    	
+	    	employee.setDateCreation(employeeDetails.getDateCreation());	
+	    	employeeService.saveEmployee(employee);
 	    	return " Employee updated";
 	    }
 	    @DeleteMapping("/employees/{id}")
