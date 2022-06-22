@@ -13,6 +13,7 @@ export default class UpdateEmployee extends Component {
           function: "",
           salary: "",
           grade: "",
+          datecreation:"",
           
         };
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
@@ -21,6 +22,7 @@ export default class UpdateEmployee extends Component {
         this.changeFunctionHandler = this.changeFunctionHandler.bind(this);
         this.changeSalaryHandler = this.changeSalaryHandler.bind(this);
         this.changeGradeHandler = this.changeGradeHandler.bind(this);
+        this.changeDatecreationHandler=this.changeDatecreationHandler.bind(this);
         this.updateEmployee = this.updateEmployee.bind(this);
       }
       componentDidMount(){
@@ -33,6 +35,7 @@ export default class UpdateEmployee extends Component {
                 function: employee.function,
                 salary: employee.salary,
                 grade: employee.grade,
+                datecreation:employee.datecreation,
               });
           });
       }
@@ -45,11 +48,12 @@ export default class UpdateEmployee extends Component {
           function: this.state.function,
           salary: this.state.salary,
           grade: this.state.grade,
+          datecreation:this.state.datecreation,
         };
         console.log('employee => ' + JSON.stringify(employee));
         console.log('id => ' + JSON.stringify(this.state.id));
         EmployeeActions.updateEmployee(employee,this.state.id).then( res =>{
-            this.props.history.push("/employees");
+            this.props.history.push('/employees');
         })
        
       };
@@ -73,8 +77,11 @@ export default class UpdateEmployee extends Component {
       changeGradeHandler = (event) => {
         this.setState({ grade: event.target.value });
       };
+      changeDatecreationHandler = (event) => {
+        this.setState({ datecreation: event.target.value });
+      };
       cancel(){
-        this.props.history.push("/employees");
+        this.props.history.push('/employees');
       }
     
       render() {
@@ -144,6 +151,16 @@ export default class UpdateEmployee extends Component {
                           className="form-control"
                           value={this.state.grade}
                           onChange={this.changeGradeHandler}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label> datecreation: </label>
+                        <input
+                          placeholder="datecreation"
+                          name="datecreation"
+                          className="form-control"
+                          value={this.state.datecreation}
+                          onChange={this.changeDatecreationHandler}
                         />
                       </div>
                       <button

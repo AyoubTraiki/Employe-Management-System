@@ -16,10 +16,10 @@ function Home() {
                     <div className="container">
                         <Switch> 
                               <Route path = "/" exact component = {ListEmployee}></Route>
-                              <Route path = "/employees" exact component = {ListEmployee}></Route>
-                              <Route path = "/save" exact component = {CreateEmployee}></Route>
-                              <Route path = "/update/:id" exact component = {UpdateEmployee}></Route>
-                              <Route path = "/view/:id" exact component = {ViewEmployee}></Route>
+                              <Route path = "/employees"  component = {ListEmployee}></Route>
+                              <Route path = "/save"  component = {CreateEmployee}></Route>
+                              <Route path = "/update/:id"  component = {UpdateEmployee}></Route>
+                              <Route path = "/view/:id"  component = {ViewEmployee}></Route>
                               
                         </Switch>
                     </div>
