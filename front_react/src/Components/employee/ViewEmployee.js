@@ -50,7 +50,7 @@ export default class ViewEmployee extends Component {
                         </div>
                         <div className = "row">
                             <label> Employee date creation: </label>
-                            <div> { this.state.employee.dateCreation }</div>
+                            <div> { this.state.employee.datecreation }</div>
                         </div>
                     </div>
 
